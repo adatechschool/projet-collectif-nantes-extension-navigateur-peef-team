@@ -1,10 +1,14 @@
-const imgs = document.getElementsByTagName("img")
+const thumbnail = document.getElementsByTagName("img")
 
 let myRacoons = []
 
 async function zaWorldo() {
     myRacoons = await getRacoons()
     changeThumbnail()
+    addEventListener('scroll', () => {
+        console.log("scroll detected!")
+        changeThumbnail()
+    })
 }
 
 async function getRacoons() {
@@ -28,7 +32,8 @@ async function getRacoons() {
 }
 
 function changeThumbnail() {
-    for (const image of imgs) {
+    console.log("changing thumbnail...")
+    for (const image of thumbnail) {
         const i = Math.floor(Math.random() * myRacoons.length)
         image.src = myRacoons[i].url
     }

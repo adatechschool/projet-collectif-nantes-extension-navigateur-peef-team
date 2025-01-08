@@ -1,0 +1,15 @@
+{
+    "manifest_version": 3,
+    "name": "Raccoonify",
+    "version": "0.1.0",
+    "description": "Improves boring youtube thumbnails by putting raccoons instead",
+    "host_permissions": [ "https://www.youtube.com/*"],
+    "content_scripts":
+    [
+      {
+        "matches": ["https://www.youtube.com/*"],
+        "js": ["src/image.js"],
+        "run_at": "document_idle"
+      }
+    ]
+  }

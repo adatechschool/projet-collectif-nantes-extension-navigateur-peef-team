@@ -2,6 +2,6 @@ chrome.action.onClicked.addListener((tab) => {
     chrome.scripting.executeScript({
         target: { tabId: tab.id },
         // func: changeWords
-        files: ["modificationTexte.js"]
+        files: ["src/modificationTexte.js", "src/liens.js", "src/image.js"]
     });
 });

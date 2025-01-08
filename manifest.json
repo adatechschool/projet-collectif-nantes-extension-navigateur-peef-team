@@ -9,14 +9,15 @@
     "https://api.racc.lol/*"
   ],
   "permissions": [
-    "webNavigation"
+    "webNavigation",
+    "activeTab",
+    "scripting",
+    "storage"
   ],
-  "content_scripts":
-  [
-    {
-      "matches": ["https://www.youtube.com/*"],
-      "js": ["src/image.js", "liens.js"],
-      "run_at": "document_idle"
-    }
-  ]
+  "background": {
+    "service_worker" : "src/background.js"
+  },
+  "action": {
+    "default_title": "modifier le texte"
+  }
 }

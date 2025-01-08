@@ -19,8 +19,9 @@ function changeWords() {
         
         elements.forEach(el => {
             el.textContent = `Racoon ${el.textContent}`
+            console.log("le texte est modifié")
         })
-        console.log("le texte est modifié")
+        
     }else{
         console.log("section non trouvé")
     }

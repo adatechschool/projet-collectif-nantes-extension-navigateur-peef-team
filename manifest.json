@@ -1,22 +1,22 @@
 {
   "manifest_version": 3,
-  "name": "YouTube Redirector",
-  "version": "1.0",
-  "description": "Redirige les vidéos YouTube vers api.racc.lol",
-  "permissions": [
-      "webNavigation"
-  ],
+  "name": "Raccoonify",
+  "version": "0.1.0",
+  "description": "Improves boring youtube thumbnails by putting raccoons instead",
   "host_permissions": [
-      "*://*.youtube.com/*",
-      "*://*.youtu.be/*",
-      "https://api.racc.lol/*"
+    "*://*.youtube.com/*",
+    "*://*.youtu.be/*",
+    "https://api.racc.lol/*"
   ],
-  "content_scripts": [{
-      "matches": [
-          "*://*.youtube.com/*",
-          "*://*.youtu.be/*"
-      ],
-      "js": ["liens.js"],
-      "run_at": "document_start"
-  }]
+  "permissions": [
+    "webNavigation"
+  ],
+  "content_scripts":
+  [
+    {
+      "matches": ["https://www.youtube.com/*"],
+      "js": ["src/image.js", "liens.js"],
+      "run_at": "document_idle"
+    }
+  ]
 }

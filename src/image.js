@@ -14,7 +14,7 @@ getRacoons()
 
 async function getRacoons() {
     try {
-        const response = await fetch("https://api.racc.lol/v1/raccoons?take=50&random=true")
+        const response = await fetch("https://api.racc.lol/v1/raccoons?take=203")
         const json = await response.json()
     
         const data = json.data
@@ -50,19 +50,17 @@ function raccoon()
         //NOTE: The purpose of this function is to get all YouTube thumbnails on the page
         function getThumbnails()
         {
-            const thumbnailQuery = "ytd-thumbnail:not(.ytd-video-preview, .ytd-rich-grid-slim-media) a > yt-image > img.yt-core-image:only-child:not(.yt-core-attributed-string__image-element),.ytp-videowall-still-image:not([style*='extension:'])";
+            const thumbnailQuery = "ytd-thumbnail:not(.ytd-video-preview, .ytd-rich-grid-slim-media) a > yt-image > img.yt-core-image:only-child:not(.yt-core-attributed-string__image-element)";
+            // ytd-thumbnail:not(.ytd-video-preview, .ytd-rich-grid-slim-media) a > yt-image > img.yt-core-image:only-child:not(.yt-core-attributed-string__image-element),.ytp-videowall-still-image:not([style*='extension:'])
+            // yt-core-image shortsLockupViewModelHostThumbnail yt-core-image--fill-parent-height yt-core-image--fill-parent-width yt-core-image--content-mode-scale-aspect-fill yt-core-image--loaded
 
             const thumbnail = document.querySelectorAll(thumbnailQuery);
 
             thumbnail.forEach((image) =>
                 {
-                    let counter = Math.random() > 0.001 ? 1 : 20;
-                    let i = 0;
-                    for(i = 0; i < counter; i++)
-                    {
-                        let url = myRacoons[Math.floor(Math.random() * myRacoons.length)].url
-                        applyThumbnails(image, url);
-                    }
+                    console.log("selecting image")
+                    let url = myRacoons[Math.floor(Math.random() * myRacoons.length)].url
+                    applyThumbnails(image, url);
                 }
             )
         }
@@ -71,7 +69,7 @@ function raccoon()
         function applyThumbnails(image, imageUrl)
         {
             if (image.nodeName == "IMG")
-            {``
+            {
                 // image.src = myRacoons[Math.floor(Math.random() * myRacoons.length)]
                 const overlay = document.createElement("img");
                 overlay.src = imageUrl;

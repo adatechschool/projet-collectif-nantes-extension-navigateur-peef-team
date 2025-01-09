@@ -19,7 +19,6 @@ function changeWords() {
             el.textContent = `Racoon ${el.textContent}`
             console.log("le texte est modifié")
         })
-        
     }else{
         console.log("section non trouvé")
     }

@@ -18,6 +18,6 @@
     "service_worker" : "src/background.js"
   },
   "action": {
-    "default_title": "modifier le texte"
+    "default_title": "Raccoonify"
   }
 }

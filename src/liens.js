@@ -31,11 +31,22 @@ function extractYouTubeId(url) {
 
 // Fonction pour obtenir l'ID de la vidéo à partir d'un élément
 function getVideoIdFromElement(element) {
+    // Cherche d'abord dans les conteneurs standard
     const videoContainer = element.closest('[data-watch-id]');
     if (videoContainer) {
         return videoContainer.getAttribute('data-watch-id');
     }
 
+    // Cherche dans le contenu de la vidéo
+    const videoContent = element.closest('ytd-rich-item-renderer, ytd-video-renderer, ytd-grid-video-renderer');
+    if (videoContent) {
+        const link = videoContent.querySelector('a#thumbnail[href]');
+        if (link) {
+            return extractYouTubeId(link.href);
+        }
+    }
+
+    // Cherche dans les liens parents
     const linkElement = element.closest('a');
     if (linkElement && linkElement.href) {
         return extractYouTubeId(linkElement.href);
@@ -64,9 +75,8 @@ async function redirectToApi(videoId) {
     const apiUrl = `https://api.racc.lol/v1/video?id=${videoId}`;
     
     try {
-        // Vérifie d'abord si l'API est accessible
         const response = await fetch(apiUrl, {
-            method: 'HEAD'  // Utilise HEAD pour vérifier rapidement la disponibilité
+            method: 'HEAD'
         });
 
         if (response.status === 429) {
@@ -78,7 +88,6 @@ async function redirectToApi(videoId) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
 
-        // Si tout va bien, redirige
         window.location.href = apiUrl;
 
     } catch (error) {
@@ -91,12 +100,18 @@ async function redirectToApi(videoId) {
 function handleYouTubeClick(event) {
     const target = event.target;
     
-    const isVideoDetail = target.closest('#details') || 
-                         target.closest('.ytd-video-meta') ||
-                         target.closest('.ytd-channel-name') ||
-                         target.closest('.ytd-video-owner-renderer');
+    // Liste étendue des sélecteurs pour inclure l'avatar et les détails
+    const isClickableElement = target.closest('#details') || 
+                             target.closest('.ytd-video-meta') ||
+                             target.closest('.ytd-channel-name') ||
+                             target.closest('.ytd-video-owner-renderer') ||
+                             target.closest('#avatar') ||           // Avatar du YouTubeur
+                             target.closest('.ytd-channel-picture') || // Image de la chaîne
+                             target.closest('yt-img-shadow') ||     // Conteneur d'image YouTube
+                             target.closest('#video-title') ||      // Titre de la vidéo
+                             target.closest('.ytd-thumbnail');      // Miniature de la vidéo
 
-    if (!isVideoDetail && !target.closest('a')) return;
+    if (!isClickableElement && !target.closest('a')) return;
 
     const videoId = getVideoIdFromElement(target);
     if (!videoId) return;

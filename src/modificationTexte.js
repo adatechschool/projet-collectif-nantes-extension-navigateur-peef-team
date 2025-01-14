@@ -12,19 +12,16 @@
 
 function changeWords() {
 
-    const exploreSection = document.getElementById("items")
-
-    if(exploreSection) {
-        const elements = document.querySelectorAll("yt-formatted-string") 
+    const elements = document.querySelectorAll("yt-formatted-string") 
         
+    if(elements) {
         elements.forEach(el => {
             el.textContent = `Racoon ${el.textContent}`
             console.log("le texte est modifié")
         })
-        
     }else{
         console.log("section non trouvé")
     }
 }
 
-changeWords()
+setTimeout(changeWords, 1000)

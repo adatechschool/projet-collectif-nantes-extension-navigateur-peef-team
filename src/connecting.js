@@ -1,4 +1,3 @@
-
 // Fonction permettant de modifier les "se connecter" en "se racooner" 
 function connectingRacoon() {
     // Cible l'id parent de la balise a modifier

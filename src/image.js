@@ -1,6 +1,8 @@
+//tableau qui va contenir les liens de images
 let myRacoons = []
 getRacoons()
 
+//function qui va chercher les lines des images de raccoons
 async function getRacoons() {
     try {
         const response = await fetch("https://api.racc.lol/v1/raccoons?take=203")
@@ -22,17 +24,13 @@ async function getRacoons() {
     }
 }
 
+
 function raccoon()
     {
-        //NOTE: The purpose of this function is to get all YouTube thumbnails on the page
+        //selectionne les miniatures affichés à l'écran qui ne sont pas encore modifiés
         function getThumbnails()
         {
             const thumbnailQuery = "ytm-shorts-lockup-view-model > a > div > img.yt-core-image:only-child, ytd-thumbnail:not(.ytd-video-preview, .ytd-rich-grid-slim-media) a > yt-image > img.yt-core-image:only-child:not(.yt-core-attributed-string__image-element),.ytp-videowall-still-image:not([style*='extension:'])";
-            // yt-core-image yt-core-image--fill-parent-height yt-core-image--fill-parent-width yt-core-image--content-mode-scale-aspect-fill yt-core-image--loaded
-            // ytd-thumbnail:not(.ytd-video-preview, .ytd-rich-grid-slim-media) a > yt-image > img.yt-core-image:only-child:not(.yt-core-attributed-string__image-element),.ytp-videowall-still-image:not([style*='extension:'])
-
-            // yt-core-image shortsLockupViewModelHostThumbnail yt-core-image--fill-parent-height yt-core-image--fill-parent-width yt-core-image--content-mode-scale-aspect-fill yt-core-image--loaded
-            // ytm-shorts-lockup-view-model > a > div > img.yt-core-image:only-child
 
             const thumbnail = document.querySelectorAll(thumbnailQuery);
 
@@ -45,7 +43,7 @@ function raccoon()
             )
         }
 
-        //NOTE: The purpose of this function is to apply the thumbnail images to the thumbnails on YouTube.com
+        //rajoute une image de raccoon par dessus la miniature selectionné
         function applyThumbnails(image, imageUrl)
         {
                 const overlay = document.createElement("img");
@@ -61,6 +59,5 @@ function raccoon()
                 image.parentElement.appendChild(overlay);
         }
 
-        //runs the functions
         setInterval(getThumbnails, 100);
     }

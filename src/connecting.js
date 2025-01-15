@@ -1,5 +1,6 @@
+// Fonction permettant de modifier les "se connecter" en "se racooner" 
 function connectingRacoon() {
-
+    // Cible l'id parent de la balise a modifier
     const connectingSection = document.querySelector('#end.style-scope.ytd-masthead')
 
     if (connectingSection) {
@@ -16,7 +17,7 @@ function connectingRacoon() {
     } else {
         console.log("La section contenant le bouton en haut'Se connecter' n'a pas été trouvée.")
     }
-
+    // modifie le "se connecter" qui se trouve sur la gauche
     const connectingSectionLeft = document.querySelector("#sign-in-button")
 
     if(connectingSectionLeft) {

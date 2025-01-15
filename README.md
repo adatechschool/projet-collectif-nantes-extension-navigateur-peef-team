@@ -20,7 +20,7 @@ cliquez sur l'icone puis sur l'extension et profitez de l'expérience.
 
   1. Manifest.json
      * backgroud.js => Injecte les autres fichiers JavaScript et contient le code qui modifie le logo.
-     * connecting.js => Permet de modifier le texte "Se Connecter" en "Se Raconner".
+     * connecting.js => Permet de modifier le texte "Se Connecter" en "Se Racooner".
      * image.js => Appel l'api api.racc.lol afin de remplacer les miniatures et les shorts des vidéos par les
        images de l'api.
      * liens.js => Redirige les liens des vidéos et des shorts vers des vidéos de ratons-laveurs disponible sur l'api.
